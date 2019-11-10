@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Facial Expression Recognition</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+</head>
+<body style = "margin:10px">
+<h3>Image upload: </h3>
+
+<form enctype="multipart/form-data" method="post" novalidate>
+{% csrf_token %}
+    {{ form }}
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<img src="{{image_path}}">
+
+{% if prediction %}
+<h3>Result: {{ max }}</h3>
+{% for e, r in prediction %}
+    <p>{{ e | title }}: {{ r }}%</p>
+{% endfor %}
+{% endif %}
+</body>
+</html>
